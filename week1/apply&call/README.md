@@ -12,6 +12,8 @@ let list1 = list(1, 2, 3) // [1, 2, 3]
 
 其中`Array.prototype.slice.call(arguments)` 可缩写为`[].slice.call(arguments)`
 
+refer: [Array.prototype.slice()#Array-like Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Array-like_objects)
+
 #### Call vs Apply
 
 >  Call and apply are very similar: both invoke the function they are called on, and take a ‘this’ argument as their first argument.
