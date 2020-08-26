@@ -12,7 +12,7 @@
 
 #### Array-like objects
 
-> `slice` method can also be called to convert Array-like objects/collections to a new Array. You just [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) the method to the object. The [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) inside a function is an example of an 'array-like object'.
+`slice` method can also be called to convert Array-like objects/collections to a new Array. You just [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) the method to the object. The [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) inside a function is an example of an 'array-like object'.
 
 ```js
 function list() {
