@@ -1,3 +1,15 @@
+### Apply/Call
+
+> 要求不用解构来实现以下类似的功能
+>
+> ```javascript
+> function b() { console.log(arguments) }
+> a = (...args) => { b(...args.slice(args.length - 3)) }
+> a(1,2,3,4,5) //[Arguments] { '0': 3, '1': 4, '2': 5 } 取后三位
+> ```
+
+
+
 #### Array-like objects
 
 > `slice` method can also be called to convert Array-like objects/collections to a new Array. You just [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) the method to the object. The [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) inside a function is an example of an 'array-like object'.

@@ -1,4 +1,19 @@
-# JS对象的冻结
+### JS对象的冻结
+
+> 对项目的 `config` 配置项进行处理，避免团队成员误操作而改变原始值
+>
+> ```javascript
+> const config = {
+>   wechat: {
+>     appKey: 'mock appKey',
+>     appSecret: 'mock appSecret'
+>   }
+> }
+> 
+> config.wechat.appKey = 'change app key' // 避免改变 config 内部的任何值
+> 
+> expect(config.wechat.appKey).toBe('mock appKey')
+> ```
 
 ### 冻结对象
 

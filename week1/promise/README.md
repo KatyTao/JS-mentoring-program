@@ -1,3 +1,7 @@
+### Promise
+
+> 实现 `Promise.each()` `Promise.race()` `Promise.trunk()`
+
 #### Reduce
 
 [Reduce方法详解](https://zhuanlan.zhihu.com/p/89644715)
