@@ -62,3 +62,9 @@ The `Promise.race()` method returns a promise that fulfills or rejects as soon a
 
 refer: [理解和使用Promise.all和Promise.race](https://www.jianshu.com/p/7e60fc1be1b2)
 
+#### Promise.trunk()
+
+类似`_.chunk()`, 将promise分组执行
+
+refer: [Underscore.js|_.chunk()](https://www.geeksforgeeks.org/underscore-js-_-chunk/#:~:text=chunk()%20function%3A,of%20arrays%20using%20this%20function)
+
