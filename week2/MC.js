@@ -1,5 +1,4 @@
-const { merge, from } = require("rxjs");
-const { first } = require("rxjs/operators");
+const { BehaviorSubject } = require("rxjs");
 
 const fakeHTTPRequest = (() => {
   let i = 0;
@@ -13,25 +12,17 @@ const fakeHTTPRequest = (() => {
   };
 })();
 
-const rxWrapper = (fakeHTTPRequest) => {
-  const arr = [];
-  const rst = [];
-  return () =>
-    new Promise((resolve) => {
-      const rx = from(fakeHTTPRequest());
-      arr.push(rx);
-      merge(...arr)
-        .pipe(first())
-        .subscribe((data) => {
-          rst[arr.indexOf(v)] = data;
-          let target = arr.length;
-          while (!rst[target]) target--;
-          return resolve(rst[target]);
-        });
-    });
+const bsRequest = (fakeHTTPRequest) => {
+  const behavior$ = new BehaviorSubject();
+  return async () => {
+    let temp = null;
+    behavior$.next(fakeHTTPRequest());
+    await behavior$.subscribe({ next: (value) => (temp = value) });
+    return temp;
+  };
 };
 
-const myRx = rxWrapper(fakeHTTPRequest);
+const myRx = bsRequest(fakeHTTPRequest);
 
 (async () => {
   console.log(await myRx());
