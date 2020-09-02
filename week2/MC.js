@@ -12,24 +12,28 @@ const fakeHTTPRequest = (() => {
   };
 })();
 
-const bsRequest = (fakeHTTPRequest) => {
+const bsRequest = () => {
   const behavior$ = new BehaviorSubject();
-  return async () => {
-    let temp = null;
-    behavior$.next(fakeHTTPRequest());
-    await behavior$.subscribe({ next: (value) => (temp = value) });
-    return temp;
+  const requests = [],
+    results = [];
+  return async (callback) => {
+    requests.push(callback);
+    behavior$.next(callback());
+    await behavior$.subscribe({ next: (value) => (results[requests.indexOf(callback)] = value) });
+    let target = requests.length - 1;
+    while (!results[target]) target--;
+    return results[target];
   };
 };
 
-const myRx = bsRequest(fakeHTTPRequest);
+const myRx = bsRequest();
 
 (async () => {
-  console.log(await myRx());
+  console.log(await myRx(fakeHTTPRequest));
 })();
 (async () => {
-  console.log(await myRx());
+  console.log(await myRx(fakeHTTPRequest));
 })();
 (async () => {
-  console.log(await myRx());
+  console.log(await myRx(fakeHTTPRequest));
 })();
