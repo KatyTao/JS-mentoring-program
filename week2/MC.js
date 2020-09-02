@@ -17,9 +17,12 @@ const bsRequest = () => {
   const requests = [],
     results = [];
   return async (callback) => {
-    requests.push(callback);
-    behavior$.next(callback());
-    await behavior$.subscribe({ next: (value) => (results[requests.indexOf(callback)] = value) });
+    const key = Symbol(callback);
+    requests.push(key);
+    behavior$.next({ key: key, value: await callback() });
+    behavior$.subscribe((value) => {
+      results[requests.indexOf(value.key)] = value.value;
+    });
     let target = requests.length - 1;
     while (!results[target]) target--;
     return results[target];
