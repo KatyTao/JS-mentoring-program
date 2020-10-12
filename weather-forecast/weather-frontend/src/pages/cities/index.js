@@ -31,15 +31,6 @@ export default function Cities(props) {
           <p className="temperature">{weather.temp}℃</p>
           <p className="message">{weather.description}</p>
         </div>
-        {/* {weather.map((item, index) => {
-          return (
-            <div className="card detail-card" key={index}>
-              <img src={`/images/${item.icon}.png`} alt={`${item.icon}`} />
-              <p className="temperature">{item.temp}℃</p>
-              <p className="message">{item.message}</p>
-            </div>
-          )
-        })} */}
       </section>
     </section>
 

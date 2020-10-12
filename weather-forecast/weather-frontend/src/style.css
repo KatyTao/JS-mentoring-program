@@ -13,7 +13,7 @@ body {
 }
 
 .forecast-detail {
-  margin: 0 auto;
+  margin: 40px auto;
 }
 
 a {
@@ -42,7 +42,7 @@ body > h1 {
   cursor: pointer;
   display: flex;
   padding: 12px;
-  flex-direction: row;
+  flex-direction: column;
   border-radius: 5px;
   box-shadow: 1px 2px 5px rgba(0,0,0,.2);
   background-color: #ffffff;
@@ -80,10 +80,12 @@ body > h1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .detail-list .detail-card {
   width: 15%;
+  margin: 0.9%;
   cursor: default;
   flex-direction: column;
   text-align: center;

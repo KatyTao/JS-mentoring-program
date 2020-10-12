@@ -6,12 +6,12 @@ module.exports = ({weatherRouter}) => {
   weatherRouter.get('/:city', async (ctx,next)=>{
     const {city} = ctx.params;
     await request
-      .get(`${HOST}/weather?q=${city}&appid=${API_KEY}&units=metric`)
+      .get(`${HOST}/forecast?q=${city}&appid=${API_KEY}&units=metric`)
       .then(res => {
         ctx.body = res.body
       })
       .catch(err => {
-        console.log(err)
+        ctx.body = {code: err.status, message: err.message}
       })
   })
 
