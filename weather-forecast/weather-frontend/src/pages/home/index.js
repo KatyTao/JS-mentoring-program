@@ -23,7 +23,7 @@ export default function Home() {
       .then((response) => {
         let weatherList = [];
         console.log(response)
-        if(response.cod === "200") {
+        if (response.cod === "200") {
           setError('')
           response.list.map(item => {
             const date = new Date(item.dt * 1000).toDateString();
@@ -35,14 +35,14 @@ export default function Home() {
           setError(response.message)
         }
       })
-      .catch((err)=> {
+      .catch((err) => {
         setError(err.message)
       })
   }
   return (
     <div>
       <MenuAppBar title="Weather Forecast" searchBar={true} searchFunc={(prop) => handleSearch(prop)} />
-      {city&&!error ? <section className="forecast-detail">
+      {city && !error ? <section className="forecast-detail">
         <h1>{city}</h1>
         <section className="detail-list">
           {weather.map((item, index) => {
@@ -53,7 +53,7 @@ export default function Home() {
                   <p className="temperature">{item.temp}℃</p>
                   <p className="message">{item.description}</p>
                 </div>
-            <p className="message">{item.date}</p>
+                <p className="message">{item.date}</p>
               </div>
             )
           })}</section> </section> : <section className="forecast-detail"><h1>{error}</h1></section>}

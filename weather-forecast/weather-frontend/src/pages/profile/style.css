@@ -1,0 +1,9 @@
+.photo-container {
+  position: relative;
+  display: inline-block;
+}
+.profile-photo {
+  width: 150px;
+  border-radius: 50%;
+}
+
