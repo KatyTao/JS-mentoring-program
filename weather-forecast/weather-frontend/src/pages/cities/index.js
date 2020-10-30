@@ -20,14 +20,14 @@ export default function Cities(props) {
         setWeather({...response.weather[0],...response.main})
         console.log(response)
       })
-  }, [])
+  }, [BACKEND_URL, city])
   console.log(weather)
   return (
     <section className="forecast-detail">
       <h1>{city}</h1>
       <section className="detail-list">
         <div className="card detail-card">
-          <img src={`${ICON_API_URL}/${weather.icon}@2x.png`} />
+          <img src={`${ICON_API_URL}/${weather.icon}@2x.png`}  alt="weather icons" />
           <p className="temperature">{weather.temp}℃</p>
           <p className="message">{weather.description}</p>
         </div>
