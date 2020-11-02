@@ -2,14 +2,21 @@ const fs = require("fs");
 const path = require("path");
 const promisePipe = require("promisepipe");
 const config = require('../config')
-const {BACKEND_HOST,PORT} = config
+const joi = require('joi')
+const validate = require('koa-joi-validate')
+const {BACKEND_URL} = config
 
 module.exports = ({ uploadRouter }) => {
-  uploadRouter.post('/', async (ctx, next) => {
+  const uploadValidator = validate({
+    files: {
+      file: joi.binary().required()
+    }
+  })
+  uploadRouter.post('/', uploadValidator, async (ctx, next) => {
     try {
       const uploadfile = ctx.request.files.file;
 
-      const savefile = `${Date.now()}#${uploadfile.name}`;
+      const savefile = `${Date.now()}_${uploadfile.name}`;
 
       const readStream = fs.createReadStream(uploadfile.path);
 
@@ -27,8 +34,9 @@ module.exports = ({ uploadRouter }) => {
       );
 
       ctx.body = {
+        code: 200,
         message: "File Uploaded",
-        url:`${BACKEND_HOST}:${PORT}/uploads/${savefile}`,
+        url:`${BACKEND_URL}/avatars/${savefile}`,
       };
     } catch (error) {
       console.log(error);

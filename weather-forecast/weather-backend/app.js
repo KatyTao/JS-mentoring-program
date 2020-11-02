@@ -4,7 +4,9 @@ const serve = require('koa-static');
 const koaBody = require('koa-body');
 const config = require('./config')
 const {PORT} = config
-const logger = require('koa-logger')
+const logger = require('koa-logger');
+const joi = require('joi')
+const validate = require('koa-joi-validate')
 const cors = require('@koa/cors');
 const app = new Koa();
 app.use(serve('./public'));

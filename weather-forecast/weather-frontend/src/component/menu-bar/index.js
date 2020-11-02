@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MenuAppBar(props) {
   const classes = useStyles();
   const { searchFunc, title, searchBar } = props;
+  // eslint-disable-next-line no-unused-vars
   const [auth, setAuth] = React.useState(true);
   const [city, setCity] = useState('')
   const [anchorEl, setAnchorEl] = React.useState(null);
