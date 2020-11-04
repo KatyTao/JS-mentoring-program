@@ -5,14 +5,13 @@ const config = require('../config')
 const joi = require('joi')
 const validate = require('koa-joi-validate')
 const {BACKEND_URL} = config
-const connection = require('../db')
+const models = require('../dbSequelize/models/index.js')
 
 async function insertURL(url) {
   try {
-    const sql = `INSERT INTO user(avatar) VALUES('${url}')`
-    console.log(sql)
-    await connection.query(sql)
-    // connection.end()
+    models.user.create({
+      avatar:url
+    })
   } catch (error) {
     console.log(error)
   }
