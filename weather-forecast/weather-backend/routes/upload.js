@@ -5,8 +5,22 @@ const config = require('../config')
 const joi = require('joi')
 const validate = require('koa-joi-validate')
 const {BACKEND_URL} = config
+const connection = require('../db')
+
+async function insertURL(url) {
+  try {
+    const sql = `INSERT INTO user(avatar) VALUES('${url}')`
+    console.log(sql)
+    await connection.query(sql)
+    // connection.end()
+  } catch (error) {
+    console.log(error)
+  }
+  
+}
 
 module.exports = ({ uploadRouter }) => {
+
   const uploadValidator = validate({
     files: {
       file: joi.binary().required()
@@ -32,11 +46,12 @@ module.exports = ({ uploadRouter }) => {
           console.log(err)
         })
       );
-
+      const url = `${BACKEND_URL}/avatars/${savefile}`;
+      await insertURL(url)
       ctx.body = {
         code: 200,
         message: "File Uploaded",
-        url:`${BACKEND_URL}/avatars/${savefile}`,
+        url
       };
     } catch (error) {
       console.log(error);
