@@ -1,10 +1,17 @@
-import { CHNAGE_CITY } from './actionCreator';
 
-export const updateCity = (state = '', action) => {
+const INIT = {
+  userName:'',
+  avatar:'',
+}
+
+export const userInfo = (state = INIT, action) => {
   switch (action.type) {
-    case CHNAGE_CITY:
-      return action.payload
+    case 'SET_NAME':
+      return {...state, userName: action.userName}
+    case 'SET_AVATAR':
+      return {...state, avatar: action.avatar}
     default:
       return state;
   }
 }
+

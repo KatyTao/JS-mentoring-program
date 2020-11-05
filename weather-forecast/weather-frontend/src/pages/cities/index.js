@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { forecasts } from '../../data';
 import config from '../../config'
 
 export default function Cities(props) {

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './style.css';
-import { forecasts } from '../../data'
 import config from '../../config'
 import MenuAppBar from '../../component/menu-bar';
 

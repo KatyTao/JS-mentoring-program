@@ -35,10 +35,15 @@ const uploadRouter = new Router({
   prefix:'/upload'
 })
 
+const oauthRouter = new Router({
+  prefix: '/authorization_code'
+})
+
 // require our external routes and pass in the router
 require('./routes/basic')({ router }); //const basicRoutes = require('./routes/basic'); basicRoutes({router});
 require('./routes/weather')({weatherRouter})
 require('./routes/upload')({uploadRouter})
+require('./routes/oauth')({oauthRouter})
 // tells the router to use all the routes that are on the object
 
 app.use(router.routes());
@@ -54,6 +59,8 @@ app.use(weatherRouter.routes());
 app.use(weatherRouter.allowedMethods());
 app.use(uploadRouter.routes());
 app.use(uploadRouter.allowedMethods());
+app.use(oauthRouter.routes());
+app.use(oauthRouter.allowedMethods());
 
 
 const server = app.listen(PORT, () => { console.log(`Listening on port ${PORT}`) });

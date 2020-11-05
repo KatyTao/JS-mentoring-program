@@ -1,4 +1,4 @@
 import {createStore} from 'redux';
-import {updateCity} from './reducer';
+import {userInfo} from './reducer';
 
-export const store = createStore(updateCity);
+export const store = createStore(userInfo);
