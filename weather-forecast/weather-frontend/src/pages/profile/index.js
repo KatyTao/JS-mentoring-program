@@ -4,10 +4,14 @@ import config from '../../config';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import './style.css';
 import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux';
+import { setAvatar} from '../../action';
 
-export default function Profile(props) {
+export default function Profile() {
   const { BACKEND_URL } = config;
-  const [avatarUrl, setAvatarUrl] = useState('/images/profile.png');
+  const userInfo = useSelector(state => state.userInfo);
+  const dispatch = useDispatch();
+  const [avatarUrl, setAvatarUrl] = useState(userInfo.avatar);
   const addPhoto = () => {
     hiddenFileInput.current.click();
   }
@@ -30,6 +34,7 @@ export default function Profile(props) {
     })
       .then(res => {
         if (res.data.code === 200) {
+          dispatch(setAvatar(res.data.url))
           setAvatarUrl(res.data.url)
         }
       })

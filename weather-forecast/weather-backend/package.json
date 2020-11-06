@@ -24,6 +24,7 @@
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.4",
     "promisepipe": "^3.0.0",
+    "redis": "^3.0.2",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
