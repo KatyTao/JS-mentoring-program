@@ -14,6 +14,7 @@
     "@koa/cors": "^3.1.0",
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
+    "ioredis": "^4.19.2",
     "joi": "^17.3.0",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
@@ -24,7 +25,6 @@
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.4",
     "promisepipe": "^3.0.0",
-    "redis": "^3.0.2",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -76,6 +76,7 @@ export default function MenuAppBar(props) {
   const loginState = useSelector(state => state.loginState);
   const { searchFunc, title, searchBar } = props;
   const [auth, setAuth] = useState(loginState.login);
+  console.log(loginState)
   const [city, setCity] = useState('')
   const [popup, setPopup] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -99,13 +100,19 @@ export default function MenuAppBar(props) {
     setAnchorEl(null);
   };
 
-  const handlelogout = async () => {
-    dispatch(logout())
-    dispatch(initUserInfo())
-    // window.location.href='/'
-    setAuth(false)
+  const dispatchLogout = () => {
+    return new Promise((resolve, reject) => {
+      dispatch(logout())
+      dispatch(initUserInfo());
+      resolve()
+    })
+  }
 
-
+  const handlelogout = () => {
+    dispatchLogout().then(() => {
+      setAuth(false)
+      window.location.href = '/'
+    })
   };
 
   const handleClickOpen = () => {
@@ -179,8 +186,7 @@ export default function MenuAppBar(props) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={() => navigateToOtherPage('profile')}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handlelogout}>Logout</MenuItem>
+                <MenuItem onClick={() => handlelogout()}>Logout</MenuItem>
               </Menu>
             </div>
           )}
