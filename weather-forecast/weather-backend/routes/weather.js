@@ -2,6 +2,7 @@ const request = require('superagent')
 const config = require('../config')
 const { HOST, API_KEY } = config
 const Redis = require('ioredis');
+const moment = require('moment');
 const client = new Redis()
 
 module.exports = ({ weatherRouter }) => {
@@ -9,7 +10,9 @@ module.exports = ({ weatherRouter }) => {
     const { city } = ctx.params;
     let redisResult = await client.get(`${city}`)
     let finalResult;
-    if (!redisResult) {
+    const date = moment.unix(JSON.parse(redisResult).list[0].dt).format('YYYY-MM-DD')
+    const currentDate = moment().format('YYYY-MM-DD')
+    if (!redisResult||date!==currentDate) {
       const requestResult = await request.get(`${HOST}/forecast?q=${city}&appid=${API_KEY}&units=metric`).catch(err => {
         console.log(err.message)
       })

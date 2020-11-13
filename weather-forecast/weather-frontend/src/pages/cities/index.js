@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from '../../config'
 
-export default function Cities(props) {
+export default function Cities() {
   const [weather, setWeather] = useState([])
   const { city } = useParams();
   const { BACKEND_URL, ICON_API_URL } = config;
